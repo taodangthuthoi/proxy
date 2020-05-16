@@ -1,9 +1,9 @@
 <?php
-//exit($_GET['url']);
+header('Access-Control-Allow-Origin: *');
 error_reporting(0);
 set_time_limit(0);
 /*
-header('Access-Control-Allow-Origin: *');
+
 header('access-control-allow-credentials: true');
 header('access-control-allow-headers: Overwrite, Destination, Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control, Range');
 header('access-control-allow-methods: HEAD, GET, POST');
