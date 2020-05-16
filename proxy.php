@@ -3,7 +3,7 @@
 error_reporting(0);
 set_time_limit(0);
 /*
-header('Access-Control-Allow-Origin: https://phim33.com');
+header('Access-Control-Allow-Origin: *');
 header('access-control-allow-credentials: true');
 header('access-control-allow-headers: Overwrite, Destination, Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control, Range');
 header('access-control-allow-methods: HEAD, GET, POST');
@@ -14,32 +14,10 @@ ob_clean();
 if(ini_get('zlib.output_compression')) {
     ini_set('zlib.output_compression', 'Off'); 
 }
-function encrypt_decrypt($action, $string) {
-    $output         = false;
-    $encrypt_method = "AES-256-CBC";
-    $secret_key     = 'hackcaigi';
-    $secret_iv      = 'hacklamcho';
-    $key            = hash('sha256', $secret_key);
-    $iv             = substr(hash('sha256', $secret_iv), 0, 16);
-    if ($action == 'encrypt') {
-        $output = openssl_encrypt($string, $encrypt_method, $key, 0, $iv);
-        $output = base64_encode($output);
-    } else if ($action == 'decrypt') {
-        $output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, 0, $iv);
-    }
-    return $output;
-}
-@$filename = $_GET['url'];
-$filename = encrypt_decrypt("decrypt",$filename);
-$filename = str_replace("abc123","=",$filename);
-$filename = str_replace("abcxyz","==",$filename);
-//$filename = str_replace(".mp4","",$filename);
-//if($_GET['mh'] == 1)$filename = encrypt_decrypt("decrypt",$filename);
-//$file = $filename;
-//$file = 'https://yourfilelocation';
-//echo stream_get_contents($filename);exit;
-$filename = "https://www.googleapis.com/drive/v3/files/1Fa_CowJ-WFvNDxIrbgjy5PM07oV4Qp8z?alt=media&key=AIzaSyDD6hRn_GoeGwsWQ6VlQ49eG64qHAjHSnk";//$_GET['url'];
-$useragent = $_SERVER['HTTP_USER_AGENT'];//
+
+$filename = $_GET['url'];
+
+$useragent = $_SERVER['HTTP_USER_AGENT'];
 $v = $filename;
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_VERBOSE, 1);
