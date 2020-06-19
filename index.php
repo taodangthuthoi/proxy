@@ -15,7 +15,7 @@ if(ini_get('zlib.output_compression')) {
     ini_set('zlib.output_compression', 'Off'); 
 }
 
-$filename = $_GET['url'];
+$filename = urldecode($_GET['url']);
 
 $useragent = $_SERVER['HTTP_USER_AGENT'];
 $v = $filename;
